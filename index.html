@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css " href="rating_style.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+
+<!-- Refer sitepoint.com/use-jquerys-ajax-functio -->
+<!--(data: The data to send to the server when performing the Ajax request) -->
+$(document).ready(function(){
+
+
+      $('#like_button').click(function insert_like() {
+        $.ajax({
+          type: 'post',
+          url: 'index.php',
+          data: {
+            post_like: "like"
+          },
+
+          success: function(response) {
+            $('#totalvotes').slideDown();
+            $('#totalvotes').html(response);
+
+          }
+        });
+      });
+
+
+      $('#dislike_button').click(function insert_dislike() {
+        $.ajax({
+          type: 'post',
+          url: 'index.php',
+          data: {
+            post_dislike: "dislike"
+          },
+
+          success: function(response) {
+            $('#totalvotes').slideDown();
+            $('#totalvotes').html(response);
+
+          }
+        });
+      });
+
+});
+
+    </script>
+    <title></title>
+  </head>
+
+  <body>
+    <h1>Rating system using jQuery, Ajax and PHP</h1>
+    <input type="image" src="images/like.png" onclick="insert_like()" id="like_button" name="" value="">
+    <input type="image" src="images/dislike.png" onclick="insert_dislike()" id="dislike_button" name="" value="">
+    <div id="totalvotes"></div>
+  </body>
+</html>
